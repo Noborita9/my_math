@@ -1,9 +1,4 @@
 matrix = [
-        [1,1,1,4],
-        [-2,-1,-1,3],
-        [1,-1,-2,0]
-        ]
-matrix1= [
         [3,1,6,3,2,1],
         [4,5,1,6,1,6],
         [2,4,1,5,6,1],
@@ -71,6 +66,9 @@ def main():
 
     for index, number in enumerate(reversed(value_list)):
         print(f"x{index+1}: {number}")
+    for line in matrix:
+        print(line)
+
 
 if __name__ == '__main__':
     main()
