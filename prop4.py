@@ -16,7 +16,6 @@ def resolve_matrix(matrix):
             main_number = number
             break
     main_number_index = [len(column), len(matrix)]
-    print(main_number_index)
     col_sublist = column[:main_number_index[0]]
     multipliers = [ mul/main_number for mul in col_sublist]
     multipliers.append(1)
