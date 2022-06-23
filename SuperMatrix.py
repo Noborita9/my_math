@@ -33,18 +33,21 @@ class SuperMatrix():
             if number != 0:
                 main_number = number
                 break
-        main_number_index = [len(column), len(self.matrix)]
+        main_number_index = [len(column), len(mat_copy)]
         col_sublist = column[:main_number_index[0]]
         multipliers = [ mul/main_number for mul in col_sublist]
         multipliers.append(1)
         for number in range(main_number_index[0]-1):
-            self.matrix[number] = self.matrix[number] - (self.matrix[main_number_index[0]-1] * multipliers[number])
+            mat_copy[number] = mat_copy[number] - (mat_copy[main_number_index[0]-1] * multipliers[number])
+        return mat_copy
 
 
 
 matrix = SuperMatrix(np.array([
-    [2,4,9],
-    [5,0,5],
-    [3,2,1]]))
-matrix.sarrus_resolve()
-print(matrix.delimeter)
+    [2,4,9,5],
+    [5,0,5,6],
+    [3,2,1,3],
+    [1,3,8,1],
+    ]))
+matrix.prop4()
+print(matrix.prop4())
