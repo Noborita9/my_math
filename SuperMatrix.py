@@ -47,7 +47,7 @@ matrix = SuperMatrix(np.array([
     [2,4,9,5],
     [5,0,5,6],
     [3,2,1,3],
-    [1,3,8,1],
+    [0,3,8,1],
     ]))
 matrix.prop4()
 print(matrix.prop4())
