@@ -5,8 +5,9 @@ class SuperMatrix():
         self.size = np.shape(self.matrix)
         self.delimeter = None
 
-    def sarrus_resolve(self):
-        extended_matrix = np.array(self.matrix)
+    def sarrus_resolve(self, extended_matrix):
+        if extended_matrix is None:
+            extended_matrix = np.array(self.matrix)
         extended_matrix = np.append(extended_matrix, extended_matrix[:, 0:2], axis=1)
         delimeter = 0
         for repetition in range(3):
@@ -41,13 +42,21 @@ class SuperMatrix():
             mat_copy[number] = mat_copy[number] - (mat_copy[main_number_index[0]-1] * multipliers[number])
         return mat_copy
 
+    def cramer_method(self):
+        shape = np.shape(self.matrix)[1]-1
+        coef_matrix = np.array(self.matrix[:, :shape])
+        val_matrix = np.array(self.matrix[:, shape])
+        delimeters = [self.sarrus_resolve(self.matrix)]
+        for index in range(shape):
+            sub_matrix = np.array(coef_matrix[:])
+            sub_matrix[:, index] = val_matrix
+            delimeters.append(self.sarrus_resolve(sub_matrix))
+        return delimeters
 
 
 matrix = SuperMatrix(np.array([
     [2,4,9,5],
     [5,0,5,6],
     [3,2,1,3],
-    [0,3,8,1],
     ]))
-matrix.prop4()
-print(matrix.prop4())
+print(matrix.cramer_method())

@@ -1,11 +1,10 @@
 import numpy as np
-from sarrus import resolve_sarrus
 
 matrix = np.array([
-        [3,6,2,7],
-        [4,2,-3,9],
-        [9,4,8,1],
-        ])
+    [2,4,9,5],
+    [5,0,5,6],
+    [3,2,1,3],
+    ])
 
 def cramer_method(matrix):
     shape = np.shape(matrix)[1]-1
@@ -15,7 +14,6 @@ def cramer_method(matrix):
     for index in range(shape):
         sub_matrix = np.array(coef_matrix[:])
         sub_matrix[:, index] = val_matrix
-        delimeters.append(resolve_sarrus(sub_matrix))
     print(delimeters)
 
 
