@@ -7,9 +7,10 @@ class SuperMatrix():
 
     def sarrus_resolve(self, extended_matrix):
         if extended_matrix is None:
-            extended_matrix = np.array(self.matrix)
+            extended_matrix = np.array(extended_matrix)
         extended_matrix = np.append(extended_matrix, extended_matrix[:, 0:2], axis=1)
         delimeter = 0
+        print(f"extended_matrix = \n{extended_matrix}")
         for repetition in range(3):
             pos_val = np.array([])
             neg_val = np.array([])
@@ -23,6 +24,7 @@ class SuperMatrix():
                 n_hold *= vn
             n_hold *= -1
             delimeter += p_hold + n_hold
+        print(delimeter)
         self.delimeter = delimeter
         return delimeter
 
@@ -46,12 +48,15 @@ class SuperMatrix():
         shape = np.shape(self.matrix)[1]-1
         coef_matrix = np.array(self.matrix[:, :shape])
         val_matrix = np.array(self.matrix[:, shape])
-        delimeters = [self.sarrus_resolve(self.matrix)]
+        delimeters = []
         for index in range(shape):
             sub_matrix = np.array(coef_matrix[:])
             sub_matrix[:, index] = val_matrix
             delimeters.append(self.sarrus_resolve(sub_matrix))
-        return delimeters
+        matrix_delimeter = self.sarrus_resolve(coef_matrix)
+        values = [unknown / matrix_delimeter for unknown in delimeters]
+        #print(f"matrix_delimeter = {matrix_delimeter}\n delimeters = {delimeters}")
+        return values
 
 
 matrix = SuperMatrix(np.array([
