@@ -45,8 +45,7 @@ class SuperMatrix():
         return mat_copy
 
     def cramer_method(self):
-        shape = self.size[1]
-        print(f"shape = {shape}\ntype(shape) = {type(shape)}\nself.size = {self.size}")
+        shape = self.size[1]-1
         coef_matrix = np.array(self.matrix[:, :shape])
         val_matrix = np.array(self.matrix[:, shape])
         delimeters = []
@@ -66,10 +65,10 @@ class SuperMatrix():
             return sub_matrix.matrix + self.matrix
 
 
-matrix = SuperMatrix([
+matrix = SuperMatrix(np.array([
     [1,-3,2,-3],
     [5,6,-1,13],
     [4,-1,3,8],
-    ])
+    ]))
 
 print(matrix.cramer_method())
